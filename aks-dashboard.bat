@@ -1,0 +1,1 @@
+az aks browse --resource-group k8s-resoucegroup --name gotk8s

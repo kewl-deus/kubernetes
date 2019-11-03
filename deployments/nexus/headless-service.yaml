@@ -1,8 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nexus-pod-service
+  name: nexus-service
   namespace: devtools
+  labels:
+    app: nexus-web
+    group: service
 spec:
   ports:
     - name: http-main
@@ -16,5 +19,4 @@ spec:
   selector:
     app: nexus
     group: service
-    statefulset.kubernetes.io/pod-name: nexus-0
-
+  clusterIP: None

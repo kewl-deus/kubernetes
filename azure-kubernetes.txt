@@ -6,4 +6,3 @@ az aks install-cli
 
 az aks get-credentials --resource-group k8s-resoucegroup --name gotk8s
 
-az aks browse --resource-group k8s-resoucegroup --name gotk8s

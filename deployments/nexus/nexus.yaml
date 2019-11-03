@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: nexus
-  namespace: nexus
+  namespace: devtools
   labels:
     app: nexus
     group: service
@@ -32,14 +32,9 @@ spec:
             - containerPort: 8123
               protocol: TCP
           volumeMounts:
-            - name: nexus-storage
+            - name: nexus-data
               mountPath: /nexus-data
-  volumeClaimTemplates:
-    - metadata:
-        name: nexus-storage
-      spec:
-        accessModes:
-        - ReadWriteOnce
-        resources:
-          requests:
-            storage: 2Gi
+      volumes:
+        - name: nexus-data
+          persistentVolumeClaim:
+            claimName: nexus-data-claim

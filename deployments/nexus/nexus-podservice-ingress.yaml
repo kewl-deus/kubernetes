@@ -5,23 +5,21 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
   name: nexus
-  namespace: nexus
+  namespace: devtools
 spec:
   rules:
-    - host: nexus.minikube
-      http:
+    - http:
         paths:
           - backend:
-              serviceName: nexus-0-service
+              serviceName: nexus-pod-service
               servicePort: 8081
             path: /
-    - host: nexus-docker.minikube
-      http:
+    - http:
         paths:
           - backend:
-              serviceName: nexus-0-service
+              serviceName: nexus-pod-service
               servicePort: 8123
             path: /
-  tls:
-    - hosts:
-        - nexus-docker.minikube
+  #tls:
+   # - hosts:
+    #    - nexus-docker.gotk8s
