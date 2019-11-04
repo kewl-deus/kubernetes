@@ -10,9 +10,13 @@ spec:
       labels:
         app: nexus-server
     spec:
+      securityContext:
+        runAsUser: 200
+        runAsGroup: 2000
+        fsGroup: 2000
       containers:
         - name: nexus
-          image: sonatype/nexus3:latest
+          image: 'sonatype/nexus3:3.15.2'
           resources:
             limits:
               memory: "4Gi"
