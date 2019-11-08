@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: 2019-11-03T20:31:51Z
+  labels:
+    run: nginx
+  name: nginx-deploy-blue
+  namespace: nginx-ingress
+  resourceVersion: "42314"
+  selfLink: /api/v1/namespaces/default/services/nginx-deploy-blue
+  uid: f76370e7-fe78-11e9-bc0f-4ebd9f6700ef
+spec:
+  clusterIP: 10.0.16.105
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: nginx-blue
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

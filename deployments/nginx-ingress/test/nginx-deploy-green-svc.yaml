@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: 2019-11-03T20:31:56Z
+  labels:
+    run: nginx
+  name: nginx-deploy-green
+  namespace: nginx-ingress
+  resourceVersion: "42324"
+  selfLink: /api/v1/namespaces/default/services/nginx-deploy-green
+  uid: fadd1345-fe78-11e9-bc0f-4ebd9f6700ef
+spec:
+  clusterIP: 10.0.35.32
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: nginx-green
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
