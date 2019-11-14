@@ -1,0 +1,1 @@
+helm inspect values stable/jenkins > jenkins-values.yml
