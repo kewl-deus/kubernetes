@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nexus
+  namespace: devtools
+  labels:
+    app: nexus
+    group: service
+spec:
+  replicas: 1
+  serviceName: nexus
+  selector:
+    matchLabels:
+      app: nexus
+  template:
+    metadata:
+      labels:
+        app: nexus
+        group: service
+    spec:
+      securityContext:
+        runAsUser: 200
+        runAsGroup: 2000
+        fsGroup: 2000
+      containers:
+        - name: nexus
+          image: 'sonatype/nexus3:3.15.2'
+          ports:
+            - containerPort: 8081
+              protocol: TCP
+              name: web
+            - containerPort: 8082
+              protocol: TCP
+              name: docker-private
+            - containerPort: 8083
+              protocol: TCP
+              name: dockerhub-proxy
+          volumeMounts:
+            - name: nexus-storage
+              mountPath: /nexus-data
+  volumeClaimTemplates:
+    - metadata:
+        name: nexus-storage
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 20Gi

@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nexus-ingress
+  namespace: devtools
+spec:
+  rules:
+    - host: nexus
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: nexus-service
+              servicePort: 8081
+    - host: nexus-docker
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: nexus-service
+              servicePort: 8082
+    - host: nexus-dockerhub
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: nexus-service
+              servicePort: 8083
+#  tls:
+#    - hosts:
+#        - nexus.local
