@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: private-reg
+spec:
+  containers:
+  - name: docker.local
+    image: <your-private-image>
+  imagePullSecrets:
+  - name: docker-local-registry-creds
+
