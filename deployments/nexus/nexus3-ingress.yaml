@@ -12,14 +12,14 @@ spec:
             backend:
               serviceName: nexus-service
               servicePort: 8081
-    - host: nexus-docker
+    - host: docker.local
       http:
         paths:
           - path: /
             backend:
               serviceName: nexus-service
               servicePort: 8082
-    - host: nexus-dockerhub
+    - host: dockerhub.proxy
       http:
         paths:
           - path: /
