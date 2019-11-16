@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: postgres-demo
+  name: postgres-db
 spec:
   serviceName: "postgres"
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: postgres
@@ -18,7 +18,18 @@ spec:
         image: postgres:latest
         envFrom:
           - configMapRef:
-              name: postgres-config-demo
+              name: postgres-db-config
+        env:
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: postgres-db-secret
+                key: POSTGRES_USER
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres-db-secret
+                key: POSTGRES_PASSWORD
         ports:
         - containerPort: 5432
           name: postgredb
@@ -31,7 +42,7 @@ spec:
       name: postgredb
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: gp2
+      storageClassName: managed-nfs-storage
       resources:
         requests:
-          storage: 3Gi
+          storage: 1Gi

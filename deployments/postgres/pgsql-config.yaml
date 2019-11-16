@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-db-config
+  labels:
+    app: postgres
+data:
+  POSTGRES_DB: demodb
+  #POSTGRES_USER: demo
+  #POSTGRES_PASSWORD: omed
