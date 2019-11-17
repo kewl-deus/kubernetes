@@ -1,5 +1,5 @@
 
-#root passwor
+#root password
 kubectl create secret generic mysql-root-pass --from-literal=password=admin
 
 #username + password
