@@ -9,12 +9,12 @@ master:
       memory: "256Mi"
     limits:
       cpu: "1000m"
-      memory: "1024Mi"
+      memory: "2048Mi"
   servicePort: 8080
   targetPort: 8080
   # For minikube, set this to NodePort, elsewhere use LoadBalancer
   # Use ClusterIP if your setup includes ingress controller
-  serviceType: LoadBalancer
+  serviceType: ClusterIP
   installPlugins:
     - kubernetes:1.18.2
     - workflow-job:2.33
@@ -27,7 +27,7 @@ master:
 
 
   ingress:
-    enabled: false
+    enabled: true
     # For Kubernetes v1.14+, use 'networking.k8s.io/v1beta1'
     apiVersion: "networking.k8s.io/v1beta1"
     labels: {}
@@ -37,7 +37,7 @@ master:
     # Set this path to jenkinsUriPrefix above or use annotations to rewrite path
     # path: "/jenkins"
     # configures the hostname e.g. jenkins.example.com
-    hostName:
+    hostName: jenkins
     tls:
     # - secretName: jenkins.cluster.local
     #   hosts:
