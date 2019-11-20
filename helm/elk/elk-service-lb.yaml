@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: elk-kibana-service-lb
+  namespace: elk
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 5601
+    name: web
+  selector:
+    app: kibana
+    release: eponymous-ostrich
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: elk-elastic-service-lb
+  namespace: elk
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 9200
+      name: http
+  selector:
+    app: elasticsearch
+    component: client
+    release: eponymous-ostrich
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: elk-logstash-service-lb
+  namespace: elk
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 5044
+      name: beats
+  selector:
+    app: logstash
+    release: eponymous-ostrich

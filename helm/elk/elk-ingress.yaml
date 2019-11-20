@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: elk-ingress
+  namespace: elk
+spec:
+  rules:
+    - host: elk
+      http:
+        paths:
+          - path: /kibana/(.*)
+            backend:
+              serviceName: eponymous-ostrich-kibana
+              servicePort: 443
+          - path: /elastic/(.*)
+            backend:
+              serviceName: eponymous-ostrich-elasticsearch-client
+              servicePort: 9200
+          - path: /logstash/(.*)
+            backend:
+              serviceName: eponymous-ostrich-logstash
+              servicePort: 5044
