@@ -24,7 +24,8 @@ spec:
         fsGroup: 2000
       containers:
         - name: nexus
-          image: 'sonatype/nexus3:3.15.2'
+          image: 'docker.local/nexus-repository-helm:3.15.2'
+          #image: 'sonatype/nexus3:3.15.2'
           ports:
             - containerPort: 8081
               protocol: TCP
@@ -38,12 +39,15 @@ spec:
           volumeMounts:
             - name: nexus-storage
               mountPath: /nexus-data
+      imagePullSecrets:
+        - name: docker-local-registry-creds
   volumeClaimTemplates:
     - metadata:
         name: nexus-storage
       spec:
         accessModes:
           - ReadWriteOnce
+        #storageClassName: managed-nfs-storage
         resources:
           requests:
             storage: 20Gi
