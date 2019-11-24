@@ -9,17 +9,17 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: eponymous-ostrich-kibana
+              serviceName: elkstack-kibana
               servicePort: 443
     - host: elastic.elk
       http:
         paths:
           - backend:
-              serviceName: eponymous-ostrich-elasticsearch-client
+              serviceName: elkstack-elasticsearch-client
               servicePort: 9200
     - host: logstash.elk
       http:
         paths:
           - backend:
-              serviceName: eponymous-ostrich-logstash
+              serviceName: elkstack-logstash
               servicePort: 5044
