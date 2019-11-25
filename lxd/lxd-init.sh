@@ -23,3 +23,7 @@ cat nfs-client-init.sh | lxc exec kworker2 bash
 
 
 sudo cp /var/snap/lxd/common/lxd/storage-pools/default/containers/kmaster/rootfs/root/.kube/config ~/.kube/k8s-lxd.config
+
+
+lxc profile device add k8s-master-kmsg "kmsg" unix-char source="/dev/kmsg" path="/dev/kmsg"
+lxc profile device show k8s-master-kmsg
